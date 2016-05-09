@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a node update count message.
+ *
+ * Available variables:
+ * - node: The node object.
+ * - count: The node update count.
+ *
+ * @see template_preprocess_hello_node_history()
+ *
+ * @ingroup themeable
+ */
+#}
+<div>
+    <span>
+        {% trans %}
+            The template type is {{ theme_type }} and its name is {{ theme_name }}.<br />
+            You can copy and paste the template static.html.twig and rename it <strong>static--{{ theme_type|replace({'_': '-'}) }}--{{ theme_name|replace({'_': '-'}) }}.html.twig</strong>
+        {% endtrans %}
+    </span>
+    <br />
+    <span>{% trans %}Other available node types:{% endtrans %}</span>
+    <ul>
+        {% for key in node_types|keys %}
+            <li>Note type <a href="{{ path('static_theme.static_template', ({'theme_type': theme_type, 'theme_name': key})) }}">{{ key }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,14 @@
+type: module
+name: Static Theme
+description: 'Static Theme allow front end developers to quicklystart working on static templates.'
+package: Development
+# core: 8.x
+configure: static_theme.admin_settings
+tags:
+ - developer
+
+# Information added by Drupal.org packaging script on 2016-04-19
+version: '8.x-0.0'
+core: '8.x'
+project: 'static_theme'
+datestamp: 1461598081

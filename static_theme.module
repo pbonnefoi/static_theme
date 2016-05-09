@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * The core module that allows content to be submitted to the site.
+ *
+ * Modules and scripts may programmatically submit nodes using the usual form
+ * API pattern.
+ */
+
+use Drupal\Component\Utility\Xss;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Database\Query\AlterableInterface;
+use Drupal\Core\Database\Query\SelectInterface;
+use Drupal\Core\Database\StatementInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\language\ConfigurableLanguageInterface;
+use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
+use Drupal\node\NodeInterface;
+use Drupal\node\NodeTypeInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function static_theme_theme() {
+    return array(
+        'static_page' => array(
+            'template' => 'static_page',
+            'variables' => array(
+                'theme_type' => NULL,
+                'theme_name' => NULL,
+                'node_types' => NULL,
+            ),
+        ),
+    );
+}
+
+/**
+* Implements hook_theme_suggestions_HOOK().
+*/
+function static_theme_theme_suggestions_static_page(array $variables) {
+    kint($variables);
+    $suggestions = array();
+
+    $suggestions[] = 'static_page__' . $variables['theme_type'];
+    $suggestions[] = 'static_page__' . $variables['theme_type'] . '__' . $variables['theme_name'];
+
+    return $suggestions;
+}

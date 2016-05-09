@@ -1,0 +1,17 @@
+static_theme.admin_settings:
+  path: '/admin/config/development/static_theme'
+  defaults:
+    _form: '\Drupal\static_theme\Form\SettingsForm'
+    _title: 'Static Theme settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+static_theme.static_template:
+  path: '/static_theme/{theme_type}/{theme_name}'
+  defaults:
+    _title: 'Static Theme'
+    _controller: '\Drupal\static_theme\Controller\StaticThemeController::content'
+    theme_type: 'no parameter'
+    theme_name: 'no parameter'
+  requirements:
+    _access: 'TRUE'
